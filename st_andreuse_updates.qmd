@@ -1,0 +1,23 @@
+---
+title: "St AndReuse Updates"
+subtitle: "Sumiran Margolis, 2026"
+format: 
+  html:
+      css: "bootstrap (1).css"
+      light: "bootstrap (1).css"
+      dark: [darkly, "dark-overrides.css"]
+      page-layout: full
+      fig-width: 12
+      fig-height: 12
+editor: visual
+---
+
+## Welcome to the dashboard!
+This page automatically updates when there are new submissions to the [St AndReuse Feedback survey](https://forms.gle/qBV7B6iU3ifWTt4U6) to help visitors and the Transition team more easily understand the impact and potential of the St AndReuse scheme.
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+source("standruse_analysis.R")
+```
