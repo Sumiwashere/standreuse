@@ -3,7 +3,6 @@
 # Outputs 7 PNG charts + statistical test results to the console
 # =============================================================================
 
-# ---- 0. Packages -------------------------------------------------------------
 pkgs <- c("tidyverse", "patchwork", "ggalluvial")
 invisible(lapply(pkgs, function(p) {
   if (!requireNamespace(p, quietly = TRUE))
@@ -14,8 +13,6 @@ invisible(lapply(pkgs, function(p) {
 # Output charts go to the output/ subfolder
 setwd("C:/Users/silog/OneDrive/Documents/standruse/output")
 
-
-# ---- 1. Load & Rename --------------------------------------------------------
 
 df_raw <- read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSasWhVUG1Q1CpLsY_udRTyyPAjp1UxSl3gbsS-kPTSiy5ZSmZxXKw6LLysOXh2hlk-Wc_OIHZZ5nAb/pub?gid=2079938757&single=true&output=csv",
                    show_col_types = FALSE)
@@ -34,7 +31,6 @@ df <- df_raw |> filter(consent == "Yes")
 
 df <- df |>
   mutate(
-    # Respondent type
     respondent_type = case_when(
       str_detect(tolower(respondent_type), "student")   ~ "Student",
       str_detect(tolower(respondent_type), "staff")     ~ "Staff",
@@ -92,7 +88,7 @@ normalise_loc <- function(loc) {
   if (is.na(loc)) return(NA_character_)
   l <- tolower(str_trim(loc))
 
-  # Clearly empty / not applicable
+  # when empty / not applicable
   if (str_detect(l, "^n/?a$|^none$|^-$|^st andrews$")) return(NA_character_)
 
   out <- character(0)
