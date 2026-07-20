@@ -1,7 +1,7 @@
 # Data visualizations of the [St AndReuse Feedback](https://forms.gle/qbhq5Gjw5VJiyYsd8) survey
 [St AndReuse](https://transitionsta.org/sharing/standreuse/) is a circular economy initiative led by [Transition St Andrews](https://transitionsta.org/). As part of my internship with Transition analysing the state of the circular economy in St Andrews, I created a feedback form for St Andrews students, staff, and community members and this data visualization tool to help Transition find ways to improve their sustainable/sharing economy projects.
 
-This tool draws from the most updated set of [responses](https://docs.google.com/spreadsheets/d/e/2PACX-1vSasWhVUG1Q1CpLsY_udRTyyPAjp1UxSl3gbsS-kPTSiy5ZSmZxXKw6LLysOXh2hlk-Wc_OIHZZ5nAb/pub?gid=2079938757) to the form and outputs 8 charts and statistical analyses. The charts can be rendered as a Quarto webpage, or stored locally.
+This tool draws from the most updated set of [responses](https://docs.google.com/spreadsheets/d/e/2PACX-1vSasWhVUG1Q1CpLsY_udRTyyPAjp1UxSl3gbsS-kPTSiy5ZSmZxXKw6LLysOXh2hlk-Wc_OIHZZ5nAb/pub?gid=2079938757) to the form and outputs 8 charts and statistical analyses. To use, download the files and open them in a code editor. The charts can be rendered as a Quarto webpage, or stored locally.
 
 ## Examples
 <img width="450" height="300" alt="01_demographics" src="https://github.com/user-attachments/assets/775e08bf-c0ae-424c-aaef-b4e06e144c48" />
