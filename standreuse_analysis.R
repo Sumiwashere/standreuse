@@ -1,7 +1,6 @@
 # =============================================================================
 # St AndReuse Feedback Survey — Analysis Script
 # Outputs 7 PNG charts + statistical test results to the console
-# =============================================================================
 
 pkgs <- c("tidyverse", "patchwork", "ggalluvial")
 invisible(lapply(pkgs, function(p) {
@@ -47,21 +46,21 @@ df <- df |>
     # Collapsed age group for statistical power
     age_group = if_else(as.integer(age_range) <= 3L, "Under 35", "35 and over"),
 
-    # Buy new less → binary (most responses start with Yes/No)
+    # Buy new less -> binary (most responses start with Yes/No)
     buy_new_less_bin = case_when(
       str_detect(tolower(buy_new_less), "^yes|^yeah|^it helps") ~ "Yes",
       str_detect(tolower(buy_new_less), "^no") ~ "No",
       TRUE ~ NA_character_
     ),
 
-    # Circular behaviour → binary
+    # Circular behaviour -> binary
     circular_bin = case_when(
       str_detect(tolower(circular_behavior), "^yes|^yeah") ~ "Yes",
       str_detect(tolower(circular_behavior), "^no")        ~ "No",
       TRUE ~ NA_character_
     ),
 
-    # Would recommend → binary
+    # Would recommend -> binary
     recommend_bin = case_when(
       str_detect(tolower(would_recommend), "yes") ~ "Yes",
       str_detect(tolower(would_recommend), "no")  ~ "No",
@@ -170,7 +169,7 @@ standard_motivs <- c(
 )
 motiv_long <- motiv_long |> filter(why_participate %in% standard_motivs)
 
-# Locations need splitting on "; " (our separator from normalise_loc)
+# Locations need splitting on "; " (separator from normalise_loc)
 loc_don_long <- df |>
   mutate(.id = row_number()) |>
   filter(!is.na(loc_don_clean)) |>
@@ -184,7 +183,7 @@ loc_rec_long <- df |>
   separate_rows(loc_rec_clean, sep = "; ")
 
 
-# ---- 5. Shared Theme & Palette -----------------------------------------------
+# ---- 5. Keeping with the Transition St Andrews style guide  -----------------------------------------------
 
 teal_pal <- c("#001419", "#003349", "#014E60", "#7E994A",
               "#B3D8E2", "#ACEBEA")
@@ -207,7 +206,6 @@ n_resp <- nrow(df)
 
 # =============================================================================
 # CHART 1 — Demographics
-# =============================================================================
 
 p_type <- df |>
   count(respondent_type) |>
@@ -255,7 +253,6 @@ print(demo_plot)
 
 # =============================================================================
 # CHART 2 — Items donated vs. received
-# =============================================================================
 
 item_levels <- c("Kitchen and household", "Clothing", "Shoes and accessories",
                  "Bedding", "Electrical", "Books and stationery",
@@ -322,7 +319,6 @@ print(items_plot)
 
 # =============================================================================
 # CHART 3 — Locations
-# =============================================================================
 
 p_loc_d <- loc_don_long |>
   count(loc_don_clean) |>
@@ -356,7 +352,6 @@ print(loc_plot)
 
 # =============================================================================
 # CHART 4 — Motivations
-# =============================================================================
 
 p_motiv <- motiv_long |>
   count(why_participate) |>
@@ -406,7 +401,6 @@ print(motiv_plot)
 
 # =============================================================================
 # CHART 5 — Circular Economy Outcomes
-# =============================================================================
 
 stack_chart <- function(data, x_var, fill_var, title_text) {
   data |>
@@ -450,7 +444,6 @@ print(outcomes_plot)
 
 # =============================================================================
 # CHART 6 — Improvement Themes (keyword-coded from open text)
-# =============================================================================
 
 theme_keywords <- list(
   "More / better opening hours"     = "hour|evening|weekend|after work|open more|opening time",
@@ -495,7 +488,6 @@ print(p_improve)
 
 # =============================================================================
 # CHART 7 — Sankey: items received by respondent type
-# =============================================================================
 
 sankey_df <- received_long |>
   left_join(df |> mutate(.id = row_number()) |> select(.id, respondent_type),
@@ -558,7 +550,6 @@ print(p_sankey)
 
 # =============================================================================
 # CHART 8 — Sankey: items donated by respondent type
-# =============================================================================
 
 sankey_don_df <- donated_long |>
   left_join(df |> mutate(.id = row_number()) |> select(.id, respondent_type),
@@ -600,7 +591,7 @@ p_sankey_don <- ggplot(
   scale_y_continuous(breaks = NULL) +
   labs(
     title    = "Items donated by respondent type",
-    subtitle = paste0("Flow width proportional to number of mentions  •  n = ",
+    subtitle = paste0("Flow width proportional to number of mentions,  n = ",
                       sum(sankey_don_df$freq), " item–person pairs"),
     x = NULL, y = NULL
   ) +
@@ -621,10 +612,8 @@ print(p_sankey_don)
 
 # =============================================================================
 # STATISTICAL TESTS
-# =============================================================================
 # All tests use Fisher's Exact (appropriate for small n).
 # simulate.p.value = TRUE is used for tables larger than 2×2.
-# =============================================================================
 
 cat("\n", strrep("=", 65), "\n")
 cat("STATISTICAL TESTS  (Fisher's Exact Test, n =", n_resp, ")\n")
@@ -639,7 +628,7 @@ run_fisher <- function(data, var1, var2, label) {
     return(invisible(NULL))
   }
 
-  # Use simulation for tables > 2×2 (otherwise exact)
+  # Use simulation for tables > 2*2 (otherwise exact)
   sim <- (nrow(tbl) * ncol(tbl)) > 4
   test <- fisher.test(tbl, simulate.p.value = sim, B = 9999)
 
