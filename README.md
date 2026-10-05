@@ -8,6 +8,4 @@ This tool draws from the most updated set of [responses](https://docs.google.com
 
 <img width="412.5" height="412.5" alt="02_items" src="https://github.com/user-attachments/assets/e0d91083-5760-4dd6-9e4d-327371c26947" />
 
-<img width="412.5" height="337.5" alt="08_sankey_items_by_type" src="https://github.com/user-attachments/assets/b5a0e96d-3d46-4956-ae2f-7a2a1afcea90" />
-
 <img width="437.5" height="337.5" alt="05_outcomes" src="https://github.com/user-attachments/assets/f26c43b8-222b-4c69-8b92-d2de6b32fe14" />
